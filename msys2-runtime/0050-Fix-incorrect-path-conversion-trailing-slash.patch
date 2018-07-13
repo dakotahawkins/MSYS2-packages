@@ -1,7 +1,7 @@
-From 50159fe297ca46145558b60a0354701e3ce1bb54 Mon Sep 17 00:00:00 2001
+From 1cfa2f9fda05a04481eab9ef96cd5f6eca6d250c Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Wed, 14 Mar 2018 17:04:19 +0100
-Subject: [PATCH 51/N] Fix incorrect path conversion (trailing slash)
+Subject: [PATCH 50/N] Fix incorrect path conversion (trailing slash)
 
 This commit reverts part of 8eae854a91 (Special case for converting root
 directory to have training slash, 2016-03-01) which not only introduced

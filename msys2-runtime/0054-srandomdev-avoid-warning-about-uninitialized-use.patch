@@ -1,7 +1,7 @@
-From fa84a1f06b83b54847e6505df2bdb6db1860f47f Mon Sep 17 00:00:00 2001
+From bd9d6957cc5426d8df927cdd4ed8d1ce47fa7363 Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Mon, 23 Apr 2018 11:58:47 +0200
-Subject: [PATCH 55/N] srandomdev(): avoid warning about "uninitialized use"
+Subject: [PATCH 54/N] srandomdev(): avoid warning about "uninitialized use"
 
 Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
 ---

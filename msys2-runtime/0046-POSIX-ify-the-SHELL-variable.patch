@@ -1,4 +1,4 @@
-From 1cf90c9f80d9bd3ef798f269b3f988742af95761 Mon Sep 17 00:00:00 2001
+From 1f459d4284869438fb5f6d5fbc671b2465429e76 Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Mon, 23 Nov 2015 20:03:11 +0100
 Subject: [PATCH 46/N] POSIX-ify the SHELL variable
@@ -47,7 +47,7 @@ Signed-off-by: Johannes Schindelin <johannes.schindelin@gmx.de>
  2 files changed, 8 insertions(+), 2 deletions(-)
 
 diff --git a/winsup/cygwin/environ.cc b/winsup/cygwin/environ.cc
-index 015711f..f1509ed 100644
+index 30cb623..9e8fdab 100644
 --- a/winsup/cygwin/environ.cc
 +++ b/winsup/cygwin/environ.cc
 @@ -309,6 +309,7 @@ static win_env conv_envvars[] =

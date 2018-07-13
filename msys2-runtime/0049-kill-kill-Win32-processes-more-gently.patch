@@ -1,4 +1,4 @@
-From 24cbca5c9fad9cc3744ef952923fb0e99ed8c21b Mon Sep 17 00:00:00 2001
+From 1420c69358c7db02c3d8b5cb9a74235a2b8595b2 Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Fri, 20 Mar 2015 10:01:50 +0000
 Subject: [PATCH 49/N] kill: kill Win32 processes more gently

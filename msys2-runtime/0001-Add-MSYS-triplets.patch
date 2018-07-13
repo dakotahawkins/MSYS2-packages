@@ -1,4 +1,4 @@
-From 560eee8a91ec1b0dda4cb36e7917648ed02caa6b Mon Sep 17 00:00:00 2001
+From 762ccd4ded6b619b8dcec96f92098f3ee95208b7 Mon Sep 17 00:00:00 2001
 From: Alexpux <alexey.pawlow@gmail.com>
 Date: Tue, 1 Mar 2016 08:51:16 +0300
 Subject: [PATCH 01/N] Add MSYS triplets.

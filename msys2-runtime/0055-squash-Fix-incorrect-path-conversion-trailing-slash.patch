@@ -1,7 +1,7 @@
-From e0f49d045dd1dbe3f6e9f3e5b1f8709cd883b662 Mon Sep 17 00:00:00 2001
+From 5d15dc6ea9430350cea3d9eb79a57f4039b8de28 Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Wed, 23 May 2018 10:26:03 +0200
-Subject: [PATCH 56/N] squash! Fix incorrect path conversion (trailing slash)
+Subject: [PATCH 55/N] squash! Fix incorrect path conversion (trailing slash)
 
 The problem with the original approach is not that it is completely
 bogus. After all, when you pass the option --prefix=/tmp/ to Git, you do

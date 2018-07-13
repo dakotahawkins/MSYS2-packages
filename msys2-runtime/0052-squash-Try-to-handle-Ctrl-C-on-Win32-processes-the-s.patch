@@ -1,7 +1,7 @@
-From 4ae93069adfb0c2bfd0ae921cf0d1133e56e8f46 Mon Sep 17 00:00:00 2001
+From 5e64515f6c88b3687ecc49d96e033d97b630570a Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Tue, 17 Apr 2018 11:56:50 +0200
-Subject: [PATCH 53/N] squash! Try to handle Ctrl+C on Win32 processes the
+Subject: [PATCH 52/N] squash! Try to handle Ctrl+C on Win32 processes the
  same way CMD does
 
 Emulate GenerateConsoleCtrlEvent() upon Ctrl+C

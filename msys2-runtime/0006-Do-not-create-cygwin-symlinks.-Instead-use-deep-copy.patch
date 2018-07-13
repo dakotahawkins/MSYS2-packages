@@ -1,4 +1,4 @@
-From f4cc76fb33cb3713f5124d919fafa20b6cd4951d Mon Sep 17 00:00:00 2001
+From 058990a5d689836b74c9b960c00024f64670b77b Mon Sep 17 00:00:00 2001
 From: Alexpux <alexey.pawlow@gmail.com>
 Date: Thu, 12 Mar 2015 14:09:29 +0300
 Subject: [PATCH 06/N] Do not create cygwin symlinks. Instead use deep copy of

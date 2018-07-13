@@ -1,4 +1,4 @@
-From 34f1f2ed67685c8223db6dcfd7edd253424e55df Mon Sep 17 00:00:00 2001
+From b5011e374cbc4998503968a1eea14be67a889c20 Mon Sep 17 00:00:00 2001
 From: Alexpux <alexey.pawlow@gmail.com>
 Date: Tue, 1 Mar 2016 13:19:18 +0300
 Subject: [PATCH 16/N] Special case for converting root directory to have

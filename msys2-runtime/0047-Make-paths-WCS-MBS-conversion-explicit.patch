@@ -1,4 +1,4 @@
-From 63710469fed006389a65773abb1d02edd58a4e57 Mon Sep 17 00:00:00 2001
+From 9349b514c8585708fa57c8b521a3b218f48dd8f6 Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Fri, 18 Dec 2015 20:19:57 +0100
 Subject: [PATCH 47/N] Make paths' WCS->MBS conversion explicit
@@ -199,10 +199,10 @@ index e6f560f..c8ed586 100644
  	}
  
 diff --git a/winsup/cygwin/environ.cc b/winsup/cygwin/environ.cc
-index 015711f..25562ea 100644
+index 9e8fdab..02f31e5 100644
 --- a/winsup/cygwin/environ.cc
 +++ b/winsup/cygwin/environ.cc
-@@ -863,7 +863,7 @@ win32env_to_cygenv (PWCHAR rawenv, bool posify)
+@@ -869,7 +869,7 @@ win32env_to_cygenv (PWCHAR rawenv, bool posify)
       eventually want to use them).  */
    for (i = 0, w = rawenv; *w != L'\0'; w = wcschr (w, L'\0') + 1, i++)
      {
@@ -211,7 +211,7 @@ index 015711f..25562ea 100644
        if (i >= envc)
          envp = (char **) realloc (envp, (4 + (envc += 100)) * sizeof (char *));
        envp[i] = newp;
-@@ -921,7 +921,7 @@ getwinenveq (const char *name, size_t namelen, int x)
+@@ -927,7 +927,7 @@ getwinenveq (const char *name, size_t namelen, int x)
    int totlen = GetEnvironmentVariableW (name0, valbuf, 32768);
    if (totlen > 0)
      {
@@ -220,7 +220,7 @@ index 015711f..25562ea 100644
        if (x == HEAP_1_STR)
  	totlen += namelen;
        else
-@@ -929,7 +929,7 @@ getwinenveq (const char *name, size_t namelen, int x)
+@@ -935,7 +935,7 @@ getwinenveq (const char *name, size_t namelen, int x)
        char *p = (char *) cmalloc_abort ((cygheap_types) x, totlen);
        if (namelen)
  	strcpy (p, name);
@@ -229,7 +229,7 @@ index 015711f..25562ea 100644
        debug_printf ("using value from GetEnvironmentVariable for '%W'", name0);
        return p;
      }
-@@ -1082,7 +1082,7 @@ build_env (const char * const *envp, PWCHAR &envblock, int &envc,
+@@ -1088,7 +1088,7 @@ build_env (const char * const *envp, PWCHAR &envblock, int &envc,
  	  for (winnum = 0, var = cwinenv;
  	       *var;
  	       ++winnum, var = wcschr (var, L'\0') + 1)
@@ -423,7 +423,7 @@ index 5bf7d22..ec389cf 100644
      }
  }
 diff --git a/winsup/cygwin/path.cc b/winsup/cygwin/path.cc
-index e5d5bcc..41c0aa5 100644
+index ac54c78..52a95bc 100644
 --- a/winsup/cygwin/path.cc
 +++ b/winsup/cygwin/path.cc
 @@ -642,7 +642,8 @@ path_conv::check (const UNICODE_STRING *src, unsigned opt,
@@ -436,7 +436,7 @@ index e5d5bcc..41c0aa5 100644
    path_conv::check (path, opt, suffixes);
  }
  
-@@ -2321,7 +2322,7 @@ symlink_info::check_shortcut (HANDLE h)
+@@ -2345,7 +2346,7 @@ symlink_info::check_shortcut (HANDLE h)
        if (*(PWCHAR) cp == 0xfeff)	/* BOM */
  	{
  	  char *tmpbuf = tp.c_get ();
@@ -445,7 +445,7 @@ index e5d5bcc..41c0aa5 100644
  	      > SYMLINK_MAX)
  	    return 0;
  	  res = posixify (tmpbuf);
-@@ -2402,7 +2403,7 @@ symlink_info::check_sysfile (HANDLE h)
+@@ -2426,7 +2427,7 @@ symlink_info::check_sysfile (HANDLE h)
  	  else
  	    srcbuf += 2;
  	  char *tmpbuf = tp.c_get ();
@@ -454,7 +454,7 @@ index e5d5bcc..41c0aa5 100644
  	      > SYMLINK_MAX)
  	    debug_printf ("symlink string too long");
  	  else
-@@ -2541,7 +2542,7 @@ symlink_info::check_reparse_point (HANDLE h, bool remote)
+@@ -2565,7 +2566,7 @@ symlink_info::check_reparse_point (HANDLE h, bool remote)
        return ret;
      }
    /* ret is > 0, so it's a reparse point, path in symbuf. */
@@ -463,7 +463,7 @@ index e5d5bcc..41c0aa5 100644
  		symbuf.Length / sizeof (WCHAR));
    pflags |= PATH_SYMLINK | PATH_REP;
    /* A symlink is never a directory. */
-@@ -2574,7 +2575,7 @@ symlink_info::check_nfs_symlink (HANDLE h)
+@@ -2598,7 +2599,7 @@ symlink_info::check_nfs_symlink (HANDLE h)
      {
        PWCHAR spath = (PWCHAR)
  		     (pffei->EaName + pffei->EaNameLength + 1);
@@ -472,7 +472,7 @@ index e5d5bcc..41c0aa5 100644
  			  spath, pffei->EaValueLength);
        pflags |= PATH_SYMLINK;
      }
-@@ -3606,7 +3607,7 @@ cygwin_conv_path (cygwin_conv_path_t what, const void *from, void *to,
+@@ -3630,7 +3631,7 @@ cygwin_conv_path (cygwin_conv_path_t what, const void *from, void *to,
  	      }
  	    PUNICODE_STRING up = p.get_nt_native_path ();
  	    buf = tp.c_get ();
@@ -481,7 +481,7 @@ index e5d5bcc..41c0aa5 100644
  			  up->Buffer, up->Length / sizeof (WCHAR));
  	    /* Convert native path to standard DOS path. */
  	    if (!strncmp (buf, "\\??\\", 4))
-@@ -3619,11 +3620,11 @@ cygwin_conv_path (cygwin_conv_path_t what, const void *from, void *to,
+@@ -3643,11 +3644,11 @@ cygwin_conv_path (cygwin_conv_path_t what, const void *from, void *to,
  	      {
  		/* Device name points to somewhere else in the NT namespace.
  		   Use GLOBALROOT prefix to convert to Win32 path. */
@@ -495,7 +495,7 @@ index e5d5bcc..41c0aa5 100644
  			      up->Buffer, up->Length / sizeof (WCHAR));
  	      }
  	    lsiz = strlen (buf) + 1;
-@@ -3997,8 +3998,8 @@ cygwin_conv_path_list (cygwin_conv_path_t what, const void *from, void *to,
+@@ -4021,8 +4022,8 @@ cygwin_conv_path_list (cygwin_conv_path_t what, const void *from, void *to,
    switch (what & CCP_CONVTYPE_MASK)
      {
      case CCP_WIN_W_TO_POSIX:
@@ -506,7 +506,7 @@ index e5d5bcc..41c0aa5 100644
  	return -1;
        what = (what & ~CCP_CONVTYPE_MASK) | CCP_WIN_A_TO_POSIX;
        from = (const void *) winp;
-@@ -4940,9 +4941,9 @@ cwdstuff::get_error_desc () const
+@@ -4964,9 +4965,9 @@ cwdstuff::get_error_desc () const
  void
  cwdstuff::reset_posix (wchar_t *w_cwd)
  {
@@ -518,7 +518,7 @@ index e5d5bcc..41c0aa5 100644
  }
  
  char *
-@@ -4965,7 +4966,7 @@ cwdstuff::get (char *buf, int need_posix, int with_chroot, unsigned ulen)
+@@ -4989,7 +4990,7 @@ cwdstuff::get (char *buf, int need_posix, int with_chroot, unsigned ulen)
    if (!need_posix)
      {
        tocopy = tp.c_get ();
@@ -528,7 +528,7 @@ index e5d5bcc..41c0aa5 100644
      }
    else
 diff --git a/winsup/cygwin/strfuncs.cc b/winsup/cygwin/strfuncs.cc
-index e0e5703..cd60ba3 100644
+index 559116b..12230ee 100644
 --- a/winsup/cygwin/strfuncs.cc
 +++ b/winsup/cygwin/strfuncs.cc
 @@ -490,13 +490,13 @@ sys_wcstombs (char *dst, size_t len, const wchar_t *src, size_t nwc,
@@ -564,7 +564,7 @@ index e0e5703..cd60ba3 100644
  {
    return sys_wcstombs_alloc (dst_p, type, src, nwc, false);
 diff --git a/winsup/cygwin/uinfo.cc b/winsup/cygwin/uinfo.cc
-index 05a0c69..fde8a1f 100644
+index d2af229..1811038 100644
 --- a/winsup/cygwin/uinfo.cc
 +++ b/winsup/cygwin/uinfo.cc
 @@ -416,12 +416,12 @@ cygheap_user::ontherange (homebodies what, struct passwd *pw)
@@ -591,7 +591,7 @@ index 05a0c69..fde8a1f 100644
        /* Last fallback: Cygwin root dir. */
        if (!homepath_env_buf[0])
  	cygwin_conv_path (CCP_POSIX_TO_WIN_A | CCP_ABSOLUTE,
-@@ -994,7 +994,7 @@ fetch_from_path (cyg_ldap *pldap, PUSER_INFO_3 ui, cygpsid &sid, PCWSTR str,
+@@ -996,7 +996,7 @@ fetch_from_path (cyg_ldap *pldap, PUSER_INFO_3 ui, cygpsid &sid, PCWSTR str,
  	}
      }
    *w = L'\0';
@@ -600,7 +600,7 @@ index 05a0c69..fde8a1f 100644
    return ret;
  }
  
-@@ -1020,7 +1020,7 @@ cygheap_pwdgrp::get_home (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
+@@ -1056,7 +1056,7 @@ cygheap_pwdgrp::get_home (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
  	    {
  	      val = pldap->get_string_attribute (L"cygwinHome");
  	      if (val && *val)
@@ -609,7 +609,7 @@ index 05a0c69..fde8a1f 100644
  	    }
  	  break;
  	case NSS_SCHEME_UNIX:
-@@ -1028,7 +1028,7 @@ cygheap_pwdgrp::get_home (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
+@@ -1064,7 +1064,7 @@ cygheap_pwdgrp::get_home (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
  	    {
  	      val = pldap->get_string_attribute (L"unixHomeDirectory");
  	      if (val && *val)
@@ -618,7 +618,7 @@ index 05a0c69..fde8a1f 100644
  	    }
  	  break;
  	case NSS_SCHEME_DESC:
-@@ -1053,7 +1053,7 @@ cygheap_pwdgrp::get_home (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
+@@ -1089,7 +1089,7 @@ cygheap_pwdgrp::get_home (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
  		    home = (char *)
  			   cygwin_create_path (CCP_WIN_W_TO_POSIX, val);
  		  else
@@ -627,7 +627,7 @@ index 05a0c69..fde8a1f 100644
  		}
  	    }
  	  break;
-@@ -1114,7 +1114,7 @@ cygheap_pwdgrp::get_shell (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
+@@ -1161,7 +1161,7 @@ cygheap_pwdgrp::get_shell (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
  	    {
  	      val = pldap->get_string_attribute (L"cygwinShell");
  	      if (val && *val)
@@ -636,7 +636,7 @@ index 05a0c69..fde8a1f 100644
  	    }
  	  break;
  	case NSS_SCHEME_UNIX:
-@@ -1122,7 +1122,7 @@ cygheap_pwdgrp::get_shell (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
+@@ -1169,7 +1169,7 @@ cygheap_pwdgrp::get_shell (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
  	    {
  	      val = pldap->get_string_attribute (L"loginShell");
  	      if (val && *val)
@@ -645,7 +645,7 @@ index 05a0c69..fde8a1f 100644
  	    }
  	  break;
  	case NSS_SCHEME_DESC:
-@@ -1147,7 +1147,7 @@ cygheap_pwdgrp::get_shell (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
+@@ -1194,7 +1194,7 @@ cygheap_pwdgrp::get_shell (cyg_ldap *pldap, cygpsid &sid, PCWSTR dom,
  		    shell = (char *)
  			    cygwin_create_path (CCP_WIN_W_TO_POSIX, val);
  		  else

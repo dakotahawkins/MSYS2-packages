@@ -1,4 +1,4 @@
-From 2469941775e3c198a822b38119db47f051ae55c1 Mon Sep 17 00:00:00 2001
+From 0096d446172404038fb08375e849006b0f0e5f7e Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Fri, 20 Mar 2015 09:56:28 +0000
 Subject: [PATCH 41/N] Try to handle Ctrl+C on Win32 processes the same way

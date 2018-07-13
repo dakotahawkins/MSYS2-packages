@@ -1,7 +1,7 @@
-From 36aa0d34eef28b063ad70813f2b5fcb862ab6b18 Mon Sep 17 00:00:00 2001
+From fd17d2d0a6dea7e89ffb2f1663b9892dc82b7239 Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Fri, 15 Dec 2017 15:27:00 +0100
-Subject: [PATCH 50/N] Generate a .pdb file instead of a .dbg file
+Subject: [PATCH 56/N] Generate a .pdb file instead of a .dbg file
 
 The non-standard .dbg file cannot be used by any standard Windows tool.
 In contrast, .pdb files can be used, e.g. for profiling.

@@ -1,4 +1,4 @@
-From fec827b1a52fd0b00bd751483bfe0135f5bfb225 Mon Sep 17 00:00:00 2001
+From c904f72ab16e062ec4c56fefb3c037c64e0c76d2 Mon Sep 17 00:00:00 2001
 From: Ray Donnelly <mingw.android@gmail.com>
 Date: Fri, 21 Aug 2015 09:52:47 +0100
 Subject: [PATCH 21/N] Add debugging for strace make_command_line

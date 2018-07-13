@@ -1,7 +1,7 @@
-From c87a1769878c7f4d5f7348126a5db7d72e184dd3 Mon Sep 17 00:00:00 2001
+From 1f04bcef5058adb4078757e9421e81daa1b6805b Mon Sep 17 00:00:00 2001
 From: Johannes Schindelin <johannes.schindelin@gmx.de>
 Date: Sun, 22 Apr 2018 23:40:33 +0200
-Subject: [PATCH 54/N] fixup! kill: kill Win32 processes more gently
+Subject: [PATCH 53/N] fixup! kill: kill Win32 processes more gently
 
 ---
  winsup/utils/kill.cc | 4 ++--
