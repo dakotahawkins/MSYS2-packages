@@ -22,6 +22,9 @@ source_url=$(sed -ne 's/^source=\([^:]\+::\)\?["'\'']\?\([^"'\''#?=&,;[:space:]]
 
 git -C src/msys2-runtime fetch --no-tags "$source_url" "$base_tag:$base_tag"
 
+HOME= \
+XDG_CONFIG_HOME= \
+GIT_CONFIG_NOGLOBAL=1 \
 git -c core.abbrev=7 -C src/msys2-runtime format-patch -o ../.. --signature=2.9.0 \
 	$base_tag.. ^HEAD^{/Start.the.merging.rebase} ||
 die "Could not generate new patch set"
